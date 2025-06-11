@@ -1,0 +1,11 @@
+.venv
+.idea
+.pytest_cache/
+__pycache__/
+.cache/
+pylintrc
+.flake8
+link-report.txt
+allure-results
+docker-results
+.env
