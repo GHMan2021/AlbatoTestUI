@@ -11,10 +11,12 @@ class CartPage(BasePage):
         self.checkout_btn = page.locator('[data-test="checkout"]')
         self.remove_btn = page.get_by_role("button", name="Remove")
 
+    @allure.step("Клик кнопки 'Checkout'")
     def click_checkout_btn(self) -> None:
         self.wait_for_element(self.checkout_btn)
         self.checkout_btn.click()
 
+    @allure.step("Очистить корзину заказа")
     def clear_cart(self) -> None:
         list_remove = self.remove_btn.all()
         for i in list_remove:

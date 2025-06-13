@@ -29,7 +29,7 @@ class InventoryPage(BasePage):
         self.wait_for_element(self.product_sort_container)
         self.product_sort_container.select_option(label=item_name)
 
-    def _get_all_prices(self) -> list[float]:
+    def get_all_prices(self) -> list[float]:
         list_elements = self.all_item_prices.all()
         list_prices = []
         for i in list_elements:
@@ -37,8 +37,8 @@ class InventoryPage(BasePage):
             list_prices.append(float(val))
         return list_prices
 
-    def _sort_all_price_by_asc(self) -> list[float]:
-        list_prices = self._get_all_prices()
+    def get_sort_all_price_by_asc(self) -> list[float]:
+        list_prices = self.get_all_prices()
         list_prices.sort()
         return list_prices
 
@@ -53,7 +53,8 @@ class InventoryPage(BasePage):
             list_card_info.append((name, price))
             card.add_to_cart_btn.click()
 
-        return list_card_info
+        with allure.step(f"Список товаров={list_card_info}"):
+            return list_card_info
 
     @allure.step("Открыть заказ")
     def open_cart(self) -> None:

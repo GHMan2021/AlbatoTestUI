@@ -14,18 +14,22 @@ class CheckoutStepOnePage(BasePage):
         self.last_name_field = page.locator('[data-test="lastName"]')
         self.postal_code_field = page.locator('[data-test="postalCode"]')
 
+    @allure.step("Клик кнопки 'Continue'")
     def click_continue_btn(self) -> None:
         self.wait_for_element(self.continue_btn)
         self.continue_btn.click()
 
+    @allure.step("Ввести имя={first_name}")
     def enter_first_name(self, first_name) -> None:
         self.wait_for_element(self.first_name_field)
         self.first_name_field.fill(first_name)
 
+    @allure.step("Ввести фамилию={last_name}")
     def enter_last_name(self, last_name) -> None:
         self.wait_for_element(self.last_name_field)
         self.last_name_field.fill(last_name)
 
+    @allure.step("Ввести индекс={postal_code}")
     def enter_postal_code(self, postal_code) -> None:
         self.wait_for_element(self.postal_code_field)
         self.postal_code_field.fill(postal_code)

@@ -12,7 +12,6 @@ class ItemCardCartComponent(BaseComponent):
         self.name = root.locator('[data-test="inventory-item-name"]')
         self.price = root.locator('[data-test="inventory-item-price"]')
 
-    @allure.step("Получить цену товара")
     def get_price(self) -> float:
         text = self.price.inner_text()
         return float(text.replace("$", ""))

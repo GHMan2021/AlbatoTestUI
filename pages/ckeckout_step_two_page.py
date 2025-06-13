@@ -1,5 +1,6 @@
-from components.item_card_cart_component import ItemCardCartComponent
+import allure
 
+from components.item_card_cart_component import ItemCardCartComponent
 from pages.base_page import BasePage
 
 
@@ -18,11 +19,12 @@ class CheckoutStepTwoPage(BasePage):
             ItemCardCartComponent(self.page, card) for card in self.card_locators.all()
         ]
 
+    @allure.step("Клик кнопки 'Finish'")
     def click_finish_btn(self) -> None:
         self.wait_for_element(self.finish_btn)
         self.finish_btn.click()
 
-    def _get_items_cart(self) -> list[tuple[str, float]]:
+    def get_items_cart(self) -> list[tuple[str, float]]:
         list_card_info = []
         for card in self.item_cards_cart:
             name = card.name.inner_text()
@@ -31,14 +33,14 @@ class CheckoutStepTwoPage(BasePage):
 
         return list_card_info
 
-    def _get_subtotal(self) -> str:
+    def get_subtotal(self) -> str:
         self.wait_for_element(self.subtotal)
         inner_text = self.subtotal.inner_text()
         subtotal = inner_text.replace("Item total: $", "")
         return subtotal
 
-    def _get_total_cost_cart(self) -> str:
-        list_cart_info = self._get_items_cart()
+    def get_total_cost_cart(self) -> str:
+        list_cart_info = self.get_items_cart()
         total_cost = 0
         for _, price in list_cart_info:
             total_cost += price
