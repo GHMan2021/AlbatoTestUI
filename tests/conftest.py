@@ -14,9 +14,9 @@ def browser(request, playwright_sync):
     if browser_type == "chromium":
         browser_instance = playwright_sync.chromium.launch(headless=True)
     elif browser_type == "webkit":
-        browser_instance = playwright_sync.webkit.launch(headless=False)
+        browser_instance = playwright_sync.webkit.launch(headless=True)
     elif browser_type == "firefox":
-        browser_instance = playwright_sync.webkit.launch(headless=False)
+        browser_instance = playwright_sync.webkit.launch(headless=True)
     else:
         raise ValueError(f"Unsupported browser: {browser_type}")
 

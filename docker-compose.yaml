@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  test_env:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: test_env_cont
+    env_file:
+      - .env
+    volumes:
+      - ./allure-results:/app/allure-results  # Сохраняем результаты на хосте
+    command: [ "pytest", "--alluredir=/app/allure-results" ]
+
