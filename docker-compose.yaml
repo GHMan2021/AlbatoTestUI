@@ -7,10 +7,15 @@ services:
     env_file:
       - .env
     volumes:
-      - ./allure-results:/app/allure-results    # результат от pytest
-      - ./allure-report:/app/allure-report      # готовый HTML отчёт
+      - ./allure-results:/app/allure-results
+      - ./allure-report:/app/allure-report
+    ports:
+      - "4040:4040"
     command: >
       /bin/bash -c "
       pytest --alluredir=/app/allure-results &&
-      allure generate /app/allure-results -o /app/allure-report --clean
+      allure generate /app/allure-results -o /app/allure-report --clean &&
+      echo 'Starting Allure server on http://localhost:4040' &&
+      allure open /app/allure-report --host 0.0.0.0 --port 4040
       "
+

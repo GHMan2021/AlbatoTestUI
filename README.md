@@ -16,6 +16,7 @@ git clone https://github.com/GHMan2021/AlbatoTestUI.git
 4. Переименовать файл ".env.example" в ".env"
 5. Выполнить команду на сбор проекта и запуск тестов
 ```
-docker-compose up 
+docker compose up --build
 ```
-5. Просмотр в браузере готового Allure отчета по тестированию в  "./allure-report/index.html" 
+5. Просмотр в браузере Allure отчета по адресу http://localhost:4040
+
